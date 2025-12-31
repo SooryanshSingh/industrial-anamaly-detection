@@ -6,7 +6,7 @@ The goal is to detect and localize defects without using defect labels during tr
 The work is based on the MVTec Anomaly Detection dataset (Bottle category) and focuses on both image-level detection and pixel-level localization.
 
 
-Dataset
+## Dataset
 
 MVTec Anomaly Detection Dataset – Bottle Category
 
@@ -31,21 +31,9 @@ Ground truth masks: pixel-level defect annotations for test defects
 
 Paths are configurable via src/data_locations.py
 
-## How to Run
+## Notebook overview
 
-1. Download the MVTec Bottle dataset from the official source.
-
-2. Update dataset paths in `src/data_locations.py`.
-
-3. Run notebooks in order:
-
-01_data_visualization.ipynb
-02_model_training.ipynb
-03_evaluation_and_visualization.ipynb
-
-Notebook overview
-
-01_data_visualization.ipynb
+-01_data_visualization.ipynb
 
 Dataset inspection
 
@@ -53,7 +41,7 @@ Sample images from each category
 
 Understanding defect characteristics
 
-02_model_training.ipynb
+-02_model_training.ipynb
 
 Autoencoder training using only normal images
 
@@ -61,7 +49,7 @@ Architecture imported from src/model.py
 
 Reconstruction-based learning
 
-03_evaluation_and_visualization.ipynb
+-03_evaluation_and_visualization.ipynb
 
 Image-level anomaly scoring
 
@@ -72,7 +60,7 @@ ROC analysis
 Pixel-level IoU evaluation using ground-truth masks
 
 
-Model Overview
+## Model Overview
 
 Architecture: Convolutional Autoencoder
 
@@ -88,7 +76,7 @@ Defective regions → high reconstruction error
 
 
 
-Anomaly Scoring Methods
+## Anomaly Scoring Methods
 
 Two image-level anomaly scoring strategies were evaluated:
 
@@ -107,16 +95,17 @@ More sensitive to localized defects
 Demonstrated stronger separation for small anomalies
 
 
-Evaluation Metrics
+## Evaluation Metrics
+
 Image-level Metrics
 
-ROC Curve
+-ROC Curve
 
-ROC–AUC
+-ROC–AUC
 
 Max-based scoring achieved higher ROC–AUC (~0.82) compared to mean MSE
 
-Thresholding
+-Thresholding
 
 Percentile-based thresholds (e.g. 75th percentile)
 
@@ -124,15 +113,9 @@ Used to classify images as NORMAL / DEFECT
 
 Higher thresholds reduce false alarms but increase the risk of missed defects, highlighting the trade-off between false positives and false negatives.
 
-Pixel-level Metrics (Advanced)
+-Compared against ground-truth defect masks
 
-Pixel-level IoU
-
-Heatmaps are binarized
-
-Compared against ground-truth defect masks
-
-Mean IoU reported per defect category and overall
+-Pixel-level IoU with mean IoU reported per defect category and overall
 
 This pixel-level evaluation goes beyond simple visualization and provides a quantitative measure of localization quality.
 
@@ -148,6 +131,16 @@ Mean Pixel IoU         ~0.08
 Limitations
 
 Reconstruction-based autoencoders provide coarse localization and may miss subtle or very small defects. Pixel-level IoU scores reflect this limitation, motivating more advanced feature-based methods for precise segmentation.
+
+
+
+## How to Run
+
+1. Download the MVTec Bottle dataset from the official source.
+2. Update dataset paths in `src/data_locations.py`.
+3. Run notebooks in order:
+
+
 
 ## Author
 
