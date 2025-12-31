@@ -1,0 +1,11 @@
+# Datasets
+data/
+data/**
+
+# Virtual env
+.venv/
+
+# Python junk
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
